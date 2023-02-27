@@ -20,7 +20,7 @@ describe('Teste ao favoritar a partir da página de detalhes', () => {
     expect(noFavoriteFoundText).toBeVisible();
   });
 
-  test('Teste se apenas são exibidos os Pokémon favoritados', () => {
+  test('Apenas são exibidos os Pokémon favoritados', () => {
     const linkDetails = screen.getByRole('link', { name: 'More details' });
 
     userEvent.click(linkDetails);
