@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import App from '../App'; // perguntar
+import App from '../App'; // perguntar Caminho do componente Pokedex
 import renderWithRouter from './renderWithRouter';
 
 const { screen } = require('@testing-library/react');
@@ -17,7 +17,7 @@ describe('Teste componente Pokedex', () => {
     const arrayPokemons = ['Pikachu', 'Charmander', 'Caterpie', 'Ekans', 'Alakazam', 'Mew', 'Rapidash', 'Snorlax', 'Dragonair'];
 
     arrayPokemons.forEach((pokemon) => {
-      if (pokemon === 'Dragonair') { // perguntar
+      if (pokemon === 'Dragonair') { // perguntar se faz sentido
         const nameLastPokemon = screen.getByText('Dragonair');
         expect(nameLastPokemon).toBeVisible();
 
@@ -63,7 +63,7 @@ describe('Teste componente Pokedex', () => {
     expect(typePokemon.innerHTML).toEqual(filterButtons[4].innerHTML);
 
     userEvent.click(buttonNext);
-    expect(allButton).toBeVisible(); // perguntar
+    expect(allButton).toBeVisible(); // perguntar O botão All precisa estar sempre visível.
     expect(typePokemon.innerHTML).toEqual(filterButtons[4].innerHTML);
 
     // A Pokedéx deverá mostrar os Pokémon normalmente (sem filtros) quando o botão All for clicado;
@@ -72,5 +72,7 @@ describe('Teste componente Pokedex', () => {
 
     userEvent.click(allButton);
     expect(typePokemon.innerHTML).toEqual(filterButtons[0].innerHTML);
+
+    // perguntar Ao carregar a página, o filtro selecionado deverá ser All
   });
 });
