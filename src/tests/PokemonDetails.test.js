@@ -6,6 +6,7 @@ const { screen } = require('@testing-library/react');
 
 describe('Teste PokemonDetails.js', () => {
   const textMoreDetails = 'More details';
+  const textAltImgPikachu = 'Pikachu location';
 
   test('Teste se as informações detalhadas do Pokémon selecionado são mostradas na tela', () => {
     renderWithRouter(<App />);
@@ -30,18 +31,14 @@ describe('Teste PokemonDetails.js', () => {
 
     userEvent.click(linkDetails);
 
-    // perguntar Todas as localizações do Pokémon devem ser mostradas na seção de detalhes;
+    const allImg = screen.getAllByRole('img', { name: textAltImgPikachu });
+    expect(allImg[0]).toHaveAttribute('src', 'https://archives.bulbagarden.net/media/upload/0/08/Kanto_Route_2_Map.png');
+    expect(allImg[1]).toHaveAttribute('src', 'https://archives.bulbagarden.net/media/upload/b/bd/Kanto_Celadon_City_Map.png');
+    expect(allImg[0]).toHaveAttribute('alt', textAltImgPikachu);
+    expect(allImg[1]).toHaveAttribute('alt', textAltImgPikachu);
 
-    // perguntar Devem ser exibidos o nome da localização e uma imagem do mapa em cada localização;
-
-    const allImg = screen.getAllByRole('img');
-    expect(allImg[1]).toHaveAttribute('src', 'https://archives.bulbagarden.net/media/upload/0/08/Kanto_Route_2_Map.png');
-    expect(allImg[2]).toHaveAttribute('src', 'https://archives.bulbagarden.net/media/upload/b/bd/Kanto_Celadon_City_Map.png');
-    expect(allImg[1]).toHaveAttribute('alt', 'Pikachu location');
-    expect(allImg[2]).toHaveAttribute('alt', 'Pikachu location');
-
+    expect(allImg[0]).toBeVisible();
     expect(allImg[1]).toBeVisible();
-    expect(allImg[2]).toBeVisible();
 
     const firstLocationText = screen.getByText('Kanto Viridian Forest');
     const secondLocationText = screen.getByText('Kanto Power Plant');
