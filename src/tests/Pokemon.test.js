@@ -49,7 +49,7 @@ describe('Teste Pokemon.js', () => {
 
     userEvent.click(linkDetails);
 
-    expect(history.location.pathname).toContain('/pokemon'); // perguntar
+    expect(history.location.pathname).toContain('/pokemon');
   });
 
   test('Teste se existe um ícone de estrela nos Pokémon favoritados', () => {
