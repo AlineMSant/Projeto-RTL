@@ -17,8 +17,8 @@ describe('Teste componente Pokedex', () => {
   test('É exibido o próximo Pokémon da lista quando o botão Próximo Pokémon é clicado:', () => {
     const arrayPokemons = data.map((obj) => obj.name);
 
-    arrayPokemons.forEach((pokemon) => {
-      if (pokemon === 'Dragonair') {
+    arrayPokemons.forEach((pokemon, index) => {
+      if (index === arrayPokemons.length - 1) {
         const nameLastPokemon = screen.getByText('Dragonair');
         expect(nameLastPokemon).toBeVisible();
 
@@ -30,6 +30,7 @@ describe('Teste componente Pokedex', () => {
       } else {
         const namePokemon = screen.getByText(pokemon);
         expect(namePokemon).toBeVisible();
+        expect(namePokemon.innerHTML).toBe(pokemon);
 
         const buttonNext = screen.getByText('Próximo Pokémon');
         userEvent.click(buttonNext);
