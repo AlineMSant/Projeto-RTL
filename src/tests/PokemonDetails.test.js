@@ -20,8 +20,8 @@ describe('Teste PokemonDetails.js', () => {
 
     expect(linkDetails).not.toBeInTheDocument();
 
-    const textDatails = screen.getByText('This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.');
-    expect(textDatails).toBeVisible();
+    const textDetails = screen.getByText('This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.');
+    expect(textDetails).toBeVisible();
   });
 
   test('Teste se existe na página uma seção com os mapas contendo as localizações do Pokémon', () => {
@@ -39,6 +39,9 @@ describe('Teste PokemonDetails.js', () => {
     expect(allImg[2]).toHaveAttribute('src', 'https://archives.bulbagarden.net/media/upload/b/bd/Kanto_Celadon_City_Map.png');
     expect(allImg[1]).toHaveAttribute('alt', 'Pikachu location');
     expect(allImg[2]).toHaveAttribute('alt', 'Pikachu location');
+
+    expect(allImg[1]).toBeVisible();
+    expect(allImg[2]).toBeVisible();
 
     const firstLocationText = screen.getByText('Kanto Viridian Forest');
     const secondLocationText = screen.getByText('Kanto Power Plant');
