@@ -43,7 +43,14 @@ describe('Teste Pokemon.js', () => {
     expect(history.location.pathname).toBe('/pokemon/25');
   });
 
-  // perguntar Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon;
+  test('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon', () => {
+    const { history } = renderWithRouter(<App />);
+    const linkDetails = screen.getByRole('link', { name: textMoreDetails });
+
+    userEvent.click(linkDetails);
+
+    expect(history.location.pathname).toContain('/pokemon'); // perguntar
+  });
 
   test('Teste se existe um ícone de estrela nos Pokémon favoritados', () => {
     renderWithRouter(<App />);

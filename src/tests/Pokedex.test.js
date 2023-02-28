@@ -68,10 +68,10 @@ describe('Teste componente Pokedex', () => {
 
     // A Pokedéx deverá mostrar os Pokémon normalmente (sem filtros) quando o botão All for clicado;
     userEvent.click(allButton);
-    expect(typePokemon.innerHTML).toEqual(filterButtons[0].innerHTML);
+    expect(typePokemon.innerHTML).toBe('Electric');
 
-    userEvent.click(allButton);
-    expect(typePokemon.innerHTML).toEqual(filterButtons[0].innerHTML);
+    userEvent.click(buttonNext);
+    expect(typePokemon.innerHTML).toBe('Fire');
 
     // perguntar Ao carregar a página, o filtro selecionado deverá ser All
   });
