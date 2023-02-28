@@ -34,7 +34,7 @@ describe('Teste Pokemon.js', () => {
     expect(linkDetails).toHaveAttribute('href', '/pokemon/25');
   });
 
-  test('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon', () => {
+  test('Teste se a URL exibida no navegador muda para /pokemon/<id>, onde <id> é o id do Pokémon cujos detalhes se deseja ver', () => {
     const { history } = renderWithRouter(<App />);
     const linkDetails = screen.getByRole('link', { name: textMoreDetails });
 
