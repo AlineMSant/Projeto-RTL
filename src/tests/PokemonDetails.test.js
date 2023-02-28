@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import App from '../App';
+import App from '../App'; // perguntar
 import renderWithRouter from './renderWithRouter';
 
 const { screen } = require('@testing-library/react');

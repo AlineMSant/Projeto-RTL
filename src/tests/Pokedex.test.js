@@ -1,6 +1,7 @@
 import userEvent from '@testing-library/user-event';
-import App from '../App'; // perguntar Caminho do componente Pokedex
+import App from '../App';
 import renderWithRouter from './renderWithRouter';
+import data from '../data';
 
 const { screen } = require('@testing-library/react');
 
@@ -14,10 +15,10 @@ describe('Teste componente Pokedex', () => {
   });
 
   test('É exibido o próximo Pokémon da lista quando o botão Próximo Pokémon é clicado:', () => {
-    const arrayPokemons = ['Pikachu', 'Charmander', 'Caterpie', 'Ekans', 'Alakazam', 'Mew', 'Rapidash', 'Snorlax', 'Dragonair'];
+    const arrayPokemons = data.map((obj) => obj.name);
 
     arrayPokemons.forEach((pokemon) => {
-      if (pokemon === 'Dragonair') { // perguntar se faz sentido
+      if (pokemon === 'Dragonair') {
         const nameLastPokemon = screen.getByText('Dragonair');
         expect(nameLastPokemon).toBeVisible();
 
@@ -55,10 +56,6 @@ describe('Teste componente Pokedex', () => {
     const allButton = screen.getByRole('button', { name: 'All' });
     expect(allButton).toBeVisible();
 
-    // perguntar A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos Pokémon daquele tipo;
-
-    // PARECE O MESMO O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
-
     const typePokemon = screen.getByTestId('pokemon-type');
     const buttonNext = screen.getByTestId('next-pokemon');
 
@@ -67,7 +64,7 @@ describe('Teste componente Pokedex', () => {
     expect(typePokemon.innerHTML).toEqual(filterButtons[4].innerHTML);
 
     userEvent.click(buttonNext);
-    expect(allButton).toBeVisible(); // perguntar O botão All precisa estar sempre visível.
+    expect(allButton).toBeVisible();
     expect(typePokemon.innerHTML).toEqual(filterButtons[4].innerHTML);
 
     // A Pokedéx deverá mostrar os Pokémon normalmente (sem filtros) quando o botão All for clicado;
@@ -76,7 +73,13 @@ describe('Teste componente Pokedex', () => {
 
     userEvent.click(buttonNext);
     expect(typePokemon.innerHTML).toBe('Fire');
+  });
 
-    // perguntar Ao carregar a página, o filtro selecionado deverá ser All
+  test('Ao carregar a página, o filtro selecionado deverá ser All', () => {
+    const pokemonTitle = screen.getByText('Pikachu');
+    const buttonNext = screen.getByTestId('next-pokemon');
+
+    expect(pokemonTitle).toBeVisible();
+    expect(buttonNext).not.toHaveAttribute('disebled');
   });
 });
