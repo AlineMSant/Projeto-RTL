@@ -55,6 +55,10 @@ describe('Teste componente Pokedex', () => {
     const allButton = screen.getByRole('button', { name: 'All' });
     expect(allButton).toBeVisible();
 
+    // perguntar A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos Pokémon daquele tipo;
+
+    // PARECE O MESMO O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
+
     const typePokemon = screen.getByTestId('pokemon-type');
     const buttonNext = screen.getByTestId('next-pokemon');
 
