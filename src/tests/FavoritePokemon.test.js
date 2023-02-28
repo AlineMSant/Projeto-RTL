@@ -33,7 +33,8 @@ describe('Teste ao favoritar a partir da página de detalhes', () => {
 
     userEvent.click(linkFavoritePokemon);
 
-    const imgFavorite = screen.getAllByRole('img');
+    const imgFavorite = screen.getAllByRole('img'); // inclui imagem do pokemon e estrela
     expect(imgFavorite[0]).toBeVisible();
+    expect(imgFavorite).toHaveLength(2);
   });
 });
